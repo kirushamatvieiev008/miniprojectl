@@ -1,7 +1,7 @@
 {
   "name": "miniprojectl",
   "version": "1.0.0",
-  "description": "",
+  "description": "rtyuio",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "npx parcel src/index.html",

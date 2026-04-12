@@ -1,7 +1,8 @@
-import debounce from "lodash.debounce";
+import debounce from "../node_modules/lodash.debounce";
 
 const searchInp = document.querySelector(".searchInp");
 const gallery = document.querySelector(".gallery");
+const moreBtn = document.querySelector(".more");
 
 let search = "mango";
 let page = 1;
@@ -38,18 +39,57 @@ const innerphotos = (arr) => {
   gallery.insertAdjacentHTML("beforeend", item);
 };
 
-const getData = () => fetch(
-  `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${search}&page=${page}&per_page=12&key=${API_KEY}`,
-).then((res) => res.json());
+const getData = () =>
+  fetch(
+    `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${search}&page=${page}&per_page=5&key=${API_KEY}`,
+  ).then((res) => res.json());
 
-searchInp.addEventListener("input", debounce((event) => {
+// let searchInside = '';
 
-  // event.preventDefault();
-  search = event.target.value.trim();
+let globalSearch = "";
 
+searchInp.addEventListener(
+  "input",
+  debounce((event) => {
+    search = event.target.value.trim();
+    console.log(search);
+
+    if (search === '') {
+      gallery.innerHTML = '';
+      moreBtn.style.display = "none";
+    } else {
+      globalSearch = search;
+      page = 1;
+      gallery.innerHTML = "";
+      getData().then((res) => {
+        innerphotos(res.hits);
+      });
+      moreBtn.style.display = "block";
+    }
+
+
+    // getData().then((res) => {
+    //   // console.log(res);
+    //   innerphotos(res.hits);
+    //   console.log(page);
+
+    // });
+  }, 1000),
+);
+// console.log(getData);
+
+moreBtn.addEventListener("click", (event) => {
+  page++;
   getData().then((res) => {
-    console.log(res);
     innerphotos(res.hits);
+    // console.log(res.totalHits);
+    // console.log(res.hits);
+    console.log(page);
+    // console.log(res.hits.length * page);
+
+    if (res.totalHits <= res.hits.length * page) {
+      moreBtn.style.display = "none";
+      return;
+    }
   });
-}, 1000));
-console.log(getData);
+});
