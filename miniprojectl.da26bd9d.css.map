@@ -1,0 +1,1 @@
+{"mappings":"ACAA,aAIA","sources":["miniprojectl.da26bd9d.css","src/style.css"],"sourcesContent":["h1 {\n  color: red;\n}\n\n.more {\n  display: none;\n}\n/*# sourceMappingURL=miniprojectl.da26bd9d.css.map */\n","h1 {\n    color: red;\n}\n\n.more {\n    display: none;\n}"],"names":[],"version":3,"file":"miniprojectl.da26bd9d.css.map"}

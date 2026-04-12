@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;AAIA","sources":["src/style.css"],"sourcesContent":["h1 {\n    color: red;\n}\n\n.more {\n    display: none;\n}"],"names":[],"version":3,"file":"miniprojectl.2cdaf7bc.css.map","sourceRoot":"/__parcel_source_root/"}
